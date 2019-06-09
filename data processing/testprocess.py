@@ -1,8 +1,12 @@
 NUMBER_OF_LINES = 22284  # number of lines/genes in microarray_original.txt
 # GPL96-15653.txt also has 22284 lines (plus 16 more for explanation)
 # microarray_original.txt has 5897 columns, the number of observations
-file_dir = 'C:/Users/Petros Debesay/Downloads/Gene_Chip_Data'
+
 import csv
+
+file_dir = "D:\\Pritom Lab\Sjtu\\2nd Semester\\Bio Info\\Gene_Chip_Data\\Gene_Chip_Data\\"
+output_file = 'C:/Users/Petros Debesay/PycharmProjects/BioInfoML/Data/processed.csv'
+
 
 def read_only_lines(f, start, finish):
     for ii, line in enumerate(f):
@@ -40,7 +44,7 @@ def normalize(lst, max_val):
 # then succeeded by numbers (breakdown of appearance of each probe/RMA signal?)
 line_start = 1
 line_end = 22284
-for line in read_only_lines(open('C:/Users/Petros Debesay/Downloads/Gene_Chip_Data/microarray.original.txt'), line_start, line_end):
+for line in read_only_lines(open(file_dir + 'microarray.original.txt'), line_start, line_end):
     mean_zero = mean_around_zero(line.split())
     max_val = max(mean_zero, key=abs)
 
@@ -48,8 +52,9 @@ for line in read_only_lines(open('C:/Users/Petros Debesay/Downloads/Gene_Chip_Da
 
     print(mean_zero)
 
-    with open('C:/Users/Petros Debesay/PycharmProjects/BioInfoML/Data/processed.csv', 'a') as file:
+    with open(output_file, 'a') as file:
         writer = csv.writer(file)
         writer.writerow(mean_zero)
+
 # for word in line.split():
 #	print(word)
