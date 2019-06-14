@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.decomposition import PCA
 import numpy as np
 
-file_dir = 'C:/Users/Petros Debesay/PycharmProjects/BioInfoML/data processing/processed.csv'
+file_dir = 'C:/Users/Petros Debesay/PycharmProjects/BioInfoML/data_processing/processed.csv'
 
 number_components = 9
 
