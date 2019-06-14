@@ -1,9 +1,10 @@
 import pandas as pd
 from sklearn.decomposition import PCA
+import numpy as np
 
 file_dir = 'C:/Users/Petros Debesay/PycharmProjects/BioInfoML/data processing/processed.csv'
 
-number_components = 7
+number_components = 9
 
 df = pd.read_csv(file_dir)
 
@@ -18,4 +19,4 @@ principal_components = pca.fit_transform(df)
 
 principal_df = pd.DataFrame(data=principal_components, columns=components)
 
-print(principal_df)
+np.savetxt("pca.csv", principal_df, delimiter=",")

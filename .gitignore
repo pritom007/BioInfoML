@@ -25,6 +25,7 @@ wheels/
 .installed.cfg
 *.egg
 data processing/processed.csv
+PCA/pca.csv
 MANIFEST
 
 # PyInstaller
