@@ -69,10 +69,3 @@ for line in read_only_lines(open(file_dir + 'microarray.original.txt'), line_sta
 x = np.array(x).transpose()
 x = StandardScaler().fit_transform(x)
 np.savetxt("processed.csv", x, delimiter=",")
-#with open(output_file, 'a') as file:
-
-    #writer = csv.writer(file)
-    #writer.writerow(x)
-
-# for word in line.split():
-#	print(word)
