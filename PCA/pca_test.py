@@ -3,7 +3,7 @@ from sklearn.decomposition import PCA
 
 file_dir = 'C:/Users/Petros Debesay/PycharmProjects/BioInfoML/data processing/processed.csv'
 
-number_components = 100
+number_components = 7
 
 df = pd.read_csv(file_dir)
 

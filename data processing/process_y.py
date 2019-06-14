@@ -14,4 +14,11 @@ for x in range(1, len(data)):
     print(data[x][7])
     print(x)
 
-print(disease_dict)
+name_size = dict()
+
+for key in disease_dict.keys():
+    name_size[key] = len(disease_dict[key])
+    print(key)
+    print(len(disease_dict[key]))
+
+print(name_size)

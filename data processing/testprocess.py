@@ -53,7 +53,7 @@ def publish(publish_list):
 # lines start with #ID (Affymetrix Probe Set ID),
 # then succeeded by numbers (breakdown of appearance of each probe/RMA signal?)
 line_start = 1
-line_end = NUMBER_OF_LINES
+line_end = 10
 x = []
 counter = 0
 for line in read_only_lines(open(file_dir + 'microarray.original.txt'), line_start, line_end):
@@ -68,4 +68,9 @@ for line in read_only_lines(open(file_dir + 'microarray.original.txt'), line_sta
 
 x = np.array(x).transpose()
 x = StandardScaler().fit_transform(x)
+
+top_row = []
+for i in range(0, line_end - line_start):
+    top_row.append(i)
+x = np.vstack([top_row, x])
 np.savetxt("processed.csv", x, delimiter=",")
