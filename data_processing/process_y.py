@@ -20,10 +20,10 @@ def return_y(key):
 
     y = []
     for x in range(1, len(data)):
-        if data[x][7] == key:
-            y.append(1)
+        if key in data[x][7].lower():
+            y.append([1])
         else:
-            y.append(0)
+            y.append([0])
 
     return y
 
@@ -34,7 +34,5 @@ def return_dict():
 
     for key in disease_dict.keys():
         name_size[key] = len(disease_dict[key])
-        print(key)
-        print(len(disease_dict[key]))
 
     return name_size

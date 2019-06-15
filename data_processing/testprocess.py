@@ -53,7 +53,7 @@ def publish(publish_list):
 # lines start with #ID (Affymetrix Probe Set ID),
 # then succeeded by numbers (breakdown of appearance of each probe/RMA signal?)
 line_start = 1
-line_end = 10
+line_end = 3000
 x = []
 counter = 0
 for line in read_only_lines(open(file_dir + 'microarray.original.txt'), line_start, line_end):

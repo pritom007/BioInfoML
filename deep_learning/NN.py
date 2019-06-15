@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function
 import tensorflow as tf
 from tensorflow import keras
 from data_processing import process_y
+from deep_learning import data_batch_handling as dbh
 
 file_dir = r'C:\Users\Petros Debesay\PycharmProjects\BioInfoML\PCA'
 
@@ -22,30 +23,35 @@ def return_y(key):
     return my_data
 
 
-print(len(return_x()))
-print(return_y('acute lymphoblastic leukemia'))
-
-
 print(tf.__version__)
 
-features = 100  # as defined by pca
-data_batch_handling.remove()
-(train_images, train_labels), (test_images, test_labels) = (tst.get_train_data()), (tst.get_test_data())
+(train_images, train_labels) = (return_x(), return_y('leukemia'))
+features = len(train_images[0])
 
-print(train_images.shape)
-#print(train_labels)
+
+test_images = train_images[:1110]
+test_labels = train_labels[:1110]
+train_images = train_images[1110:]
+train_labels = train_labels[1110:]
+
+
+x = len(test_images) + len(train_images)
+print(x)
+
 
 model = keras.Sequential([
-    keras.layers.Dense(features),
-    keras.layers.Dense(128, activation=tf.nn.sigmoid),
-    keras.layers.Dense(2, activation=tf.nn.sigmoid)
+    keras.layers.Dense(features, kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+    keras.layers.Dense(512, activation=tf.nn.sigmoid, kernel_regularizer=tf.keras.regularizers.l1(0.01)),
+    keras.layers.Dense(256, activation=tf.nn.sigmoid, kernel_regularizer=tf.keras.regularizers.l1(0.01)),
+    keras.layers.Dense(128, activation=tf.nn.sigmoid, kernel_regularizer=tf.keras.regularizers.l1(0.01)),
+    keras.layers.Dense(2, activation=tf.nn.sigmoid, kernel_regularizer=tf.keras.regularizers.l1(0.01))
 ])
 
-model.compile(optimizer='adam',
+model.compile(optimizer=tf.train.AdamOptimizer(learning_rate=0.00001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_images, train_labels, epochs=150)
+model.fit(train_images, train_labels, epochs=10)
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 
 print('Test accuracy:', test_acc)
