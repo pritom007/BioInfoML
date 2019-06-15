@@ -21,10 +21,9 @@ def return_y(key):
     y = []
     for x in range(1, len(data)):
         if key in data[x][7].lower():
-            y.append([1])
+            y.append([1, 0])
         else:
-            y.append([0])
-
+            y.append([0, 1])
     return y
 
 

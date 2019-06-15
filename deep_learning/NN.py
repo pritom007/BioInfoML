@@ -51,7 +51,7 @@ model.compile(optimizer=tf.train.AdamOptimizer(learning_rate=0.00001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_images, train_labels, epochs=10)
+model.fit(train_images, train_labels, epochs=100)
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 
 print('Test accuracy:', test_acc)
