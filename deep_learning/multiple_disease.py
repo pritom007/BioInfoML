@@ -61,7 +61,7 @@ def multiple_train(term):
 
     x_train, x_test, y_train, y_test = train_test_split(return_x(), return_y(term), test_size=0.3)
 
-    model.fit(x_train, y_train, epochs=300)
+    model.fit(x_train, y_train, epochs=100)
     test_loss, test_acc = model.evaluate(x_test, y_test)
 
     print(len(x_test))
