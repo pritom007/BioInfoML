@@ -1,2 +1,3 @@
 # BioInfoML
-Machine Learning project based on bioinformatics data. We are supposed do PCA, Linear regression/SVM and in the end we will use deep learning to do some classification and prediction.   
+Machine Learning project based on bioinformatics data. We have implemented some machine learning algorithms and techniques.Such as- PCA, Linear regression, SVM and DNN. 
+The goal is to do some classification and predictions of diseases. For details info check- 
