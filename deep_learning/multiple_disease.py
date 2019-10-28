@@ -1,19 +1,22 @@
 from __future__ import absolute_import, division, print_function
+
 import re
 
 # TensorFlow and tf.keras
 import tensorflow as tf
-from tensorflow import keras
-from data_processing import process_y
 from sklearn.model_selection import train_test_split
-from deep_learning import data_batch_handling as dbh
+from tensorflow import keras
 
-file_dir = r'C:\Users\Petros Debesay\PycharmProjects\BioInfoML\PCA'
+from data_processing import process_y
+
+# from deep_learning import data_batch_handling as dbh
+
+file_dir = r'D:\PycharmProjects\BioInfoML\PCA'
 import numpy as np
 
 
 def return_x():
-    my_data = np.genfromtxt(file_dir + r'\pca.csv', delimiter=',')
+    my_data = np.genfromtxt(file_dir + r'\pca_dl.csv', delimiter=',')
     return my_data
 
 
@@ -28,20 +31,12 @@ keys = process_y.return_dict().keys()
 
 new_keys = set()
 
-
 for key in keys:
     for word in re.compile('\w+').findall(key):
         new_keys.add(word)
 
 features = len(return_x()[0])
 
-# test_images = train_images[:1110]
-# test_labels = train_labels[:1110]
-#train_images = train_images  # [1110:]
-#train_labels = train_labels  # [1110:]
-
-# x = len(test_images) + len(train_images)
-# print(x)
 
 model = keras.Sequential([
     keras.layers.Dense(features, kernel_regularizer=tf.keras.regularizers.l2(0.01)),
@@ -57,8 +52,6 @@ model.compile(optimizer=tf.train.AdamOptimizer(learning_rate=0.0001),
 
 
 def multiple_train(term):
-
-
     x_train, x_test, y_train, y_test = train_test_split(return_x(), return_y(term), test_size=0.3)
 
     model.fit(x_train, y_train, epochs=100)
